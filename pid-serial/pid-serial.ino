@@ -33,7 +33,7 @@ const float ticksPerMeter = TPR / wheelCircumference; // ticks per meter
 
 // Desired speed in m/s
 float desiredSpeed = 0.25; // Example desired speed in meters per second
-float angularVel = 0.1; // Example desired angle in degrees
+float angularVel = 0.1; // Example desired omega in rad/s
 float desiredTicksPerInterval = desiredSpeed * ticksPerMeter * T / 1000.0; // Desired ticks per interval
 
 // Filtering variables
@@ -203,7 +203,7 @@ void loop() {
     output = (kp * error) + (ki * integral); // PI controller output
 
     if (angularVel == 0) {
-      //Nothing to do
+      currentAngularVel = 0;
     } else if (currentspeed != 0) {
       float angle = atan((angularVel * L_steering) / currentspeed) * (180 / PI); // Servo angle in degrees
       delta = 90 - angle; // Adjust the angle relative to the straight position
@@ -245,10 +245,8 @@ void loop() {
     forwardSpeed[2] = (int32_t)output;  // Normal direction for motor 2
     setMotorSpeed(forwardSpeed[0], forwardSpeed[2]); // Set the motor speed
     myServo.write(delta); // Set the servo angle
-
     Serial.print(currentspeed);
     Serial.print(",");
     Serial.println(currentAngularVel);
-
   }
 }

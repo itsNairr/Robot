@@ -38,7 +38,7 @@ def main():
     odom = Odometry()
 
     # Define time interval
-    dt = 0.1  # time interval in seconds
+    dt = 0.250  # time interval in seconds
 
     try:
         while True:
