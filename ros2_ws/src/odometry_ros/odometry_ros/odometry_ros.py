@@ -17,13 +17,12 @@ class OdometryNode(Node):
         
         # Initialize publisher for Odometry and Velocity messages and other broadcasters stuff (help me plz)
         self.odom_publisher = self.create_publisher(Odometry, '/odom', 10)
-        self.vel_publisher_ = self.create_publisher(Twist, 'vel', 10)
         self.broadcaster = TransformBroadcaster(self)
         self.ser = serial.Serial('/dev/ttyACM0', 9600)
         time.sleep(2)  # Allow time for the connection to establish
 
         # Initialize odometry with the starting position (0, 0, 0)
-        self.odom = Odometry()
+        self.odom = RobotOdometry()
         
         # Define time interval
         self.dt = 0.250  # time interval in seconds
@@ -90,7 +89,7 @@ class OdometryNode(Node):
         super().destroy_node()
         self.ser.close()
 
-class Odometry:
+class RobotOdometry:
     def __init__(self, x=0.0, y=0.0, theta=0.0):
         self.x = x
         self.y = y

@@ -4,7 +4,7 @@ package_name = 'odometry_ros'
 
 setup(
     name=package_name,
-    version='0.0.0',
+    version='1.0.0',
     packages=find_packages(exclude=['test']),
     data_files=[
         ('share/ament_index/resource_index/packages',
@@ -13,13 +13,14 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='haripi',
-    maintainer_email='coolhari2004@gmail.com',
-    description='TODO: Package description',
-    license='TODO: License declaration',
+    maintainer='Hari Nair',
+    maintainer_email='21hpn2@queensu.ca',
+    description='Odometry ROS2 package',
+    license='Apache License 2.0',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+             'odometry_node = odometry_ros.odometry_node:main'
         ],
     },
 )
