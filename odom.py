@@ -2,6 +2,7 @@ import serial
 import numpy as np
 import time
 
+
 class Odometry:
     def __init__(self, x=0.0, y=0.0, theta=0.0):
         self.x = x
